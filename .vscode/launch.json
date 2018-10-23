@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/src/index.ts"],
+      "env": {
+        "LOG_LEVEL": "debug"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Unit Tests with ts-node",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--no-timeouts",
+        "--colors",
+        "--recursive",
+        "--inspect-brk",
+        "${workspaceFolder}/test/**/*.unit.ts",
+        "--require",
+        "ts-node/register"
+      ],
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart",
+      "sourceMaps": true,
+      "protocol": "inspector",
+      "outFiles": ["${workspaceRoot}/lib/test/**/*.js"],
+      "outputCapture": "std",
+      "env": {
+        "NODE_ENV": "test",
+        "LOG_LEVEL": "debug",
+        "AWS_REGION": "us-east-1"
+      }
+    }
+  ]
+}

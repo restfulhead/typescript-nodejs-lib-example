@@ -1,0 +1,61 @@
+{
+  "name": "typescript-nodejs-lib-example",
+  "version": "1.0.0",
+  "description": "Example setup for TypeScript based NodeJS libraries",
+  "scripts": {
+    "clean": "rm -rf dist coverage docs",
+    "verify": "npm run ts:style && npm test",
+    "test": "NODE_ENV=test LOG_LEVEL=debug mocha --timeout 20000 -r ts-node/register 'test/**/*.unit.ts'",
+    "test:int": "NODE_ENV=test LOG_LEVEL=debug mocha --timeout 40000 -r ts-node/register 'test/**/*.int.ts'",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "test:only-changed": "npm test -- --bail --onlyChanged",
+    "debug": "ts-node --inspect=9229 --debug-brk --ignore false src/main.ts",
+    "build": "tsc --target es2017",
+    "prepush": "npm run ts:style && npm run test:only-changed",
+    "postpublish": "npm run clean",
+    "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
+    "release-dryrun": "npm run release -- --dry-run",
+    "snapshot": "npm run release -- --prerelease",
+    "prerelease": "npm run build",
+    "release": "standard-version",
+    "publishrelease": "npm run release:git && npm run release:npm",
+    "release:git": "git push --follow-tags origin master",
+    "release:npm": "cp package*.json dist/ && cd dist && npm publish && cd ../",
+    "ts:lint": "tslint --project tsconfig.json --format codeFrame",
+    "ts:format:base": "npm run prettier:ts -- {src,test}/**/*.{ts,tsx}",
+    "ts:format": "npm run ts:format:base -- --list-different",
+    "ts:style": "npm run ts:format && npm run ts:lint",
+    "prettier:ts": "prettier --single-quote --print-width 130 --trailing-comma es5 --no-semi --parser typescript"
+  },
+  "engines": {
+    "node": ">=8.9"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.1.6",
+    "@types/mocha": "^5.2.2",
+    "@types/node": "^8.10.36",
+    "chai": "^4.2.0",
+    "chai-string": "^1.5.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.14.3",
+    "standard-version": "^4.4.0",
+    "testdouble": "^3.8.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+http://github.com/ruhkopf/typescript-nodejs-lib-example.git"
+  },
+  "bugs": {
+    "url": "http://github.com/ruhkopf/typescript-nodejs-lib-example/issues"
+  },
+  "homepage": "http://github.com/ruhkopf/typescript-nodejs-lib-example#readme"
+}
