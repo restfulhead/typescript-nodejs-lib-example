@@ -34,3 +34,4 @@ Releases are powered by [Standard Version](https://github.com/conventional-chang
 Standard Version decides how to increment the version number based on your commit comments. If you'd like to change this behavior you can use the `--release-as` flag with the argument `major`, `minor` or `patch`, for example: `npm run release -- --release-as major`
 
 For more information about development standards and the release process, please review the TypeScript section in our Wiki.
+
