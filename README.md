@@ -12,6 +12,8 @@ Recommended extensions can be found in `.vscode/extensions.json` and we encourag
 
 This project comes with an example `tsconfig.json` and `tslint.json` to get you started with building TypeScript based libraries.
 
+Note: This repository is outdated.  ESlint should be used instead of TSlint.
+
 # NPM scripts
 
 You'll find several useful NPM scripts in `package.json`.
